@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <title>Disquera</title>
+</head>
+<body>
+    <div class="signupFrm">
+        
+        <form th:action="@{/cancion/add}" th:object="${cancion}" method="post" style="width: 35rem;" class="form"> 
+            <h1 th:text="${accion}"></h1>  
+            
+            <div class="inputContainer">
+                <label for="nombre_cancion" class="label">Nombre Cancion</label>
+                <input type="text" class="input" id="nombre_cancion" th:field="*{nombre_cancion}">
+                        <div class="form-text text-danger" th:if="${#fields.hasErrors('nombre_cancion')}" th:errors="*{nombre_cancion}"></div>
+            </div>
+
+            <div class="inputContainer">
+                <label for="fecha_grabacion" class="label">Fecha Grabacion</label>
+                <input type="text" class="input" id="fecha_grabacion" th:field="*{fecha_grabacion}">
+                        <div class="form-text text-danger" th:if="${#fields.hasErrors('fecha_grabacion')}" th:errors="*{fecha_grabacion}"></div>
+            </div>
+
+            <div class="inputContainer">
+                <label for="duracion_cancion" class="label">Duracion Cancion</label>
+                <input type="text" class="input" id="duracion_cancion" th:field="*{duracion_cancion}">
+                        <div class="form-text text-danger" th:if="${#fields.hasErrors('duracion_cancion')}" th:errors="*{duracion_cancion}"></div>
+            </div>
+           
+            <div class="inputContainer">
+                <input class="form-check-input" type="checkbox" id="estado_cancion" th:field="*{estado_cancion}">
+                <label class="form-check-label" for=estado_cancion>Activo</label>
+            </div>
+            <div>
+                <button type="submit" class="submitBtn">Guardar</button>
+            </div>
+        </form>        
+    </div>
+    
+</body>
+</html>

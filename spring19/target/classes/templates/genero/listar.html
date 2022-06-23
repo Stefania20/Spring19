@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="https://wwww.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Listar</title>
+</head>
+<body>
+    
+    <div class="highlight">
+           <center> <h1>Listado de Generos</h1></center>
+            <table class="centered" >
+                <thead>
+                    <th>Id</th>
+                    <th>Nombre Genero</th>
+                    <th>Estado</th>
+                    <th colspan="2">Acciones</th>
+                </thead>
+                <tbody th:if="${generos.size()>0}" th:each="g:${generos}" >
+                    <td th:text="${g.id}"></td>
+                    <td th:text="${g.nombre_genero}"></td>
+                    <td th:if="${g.estado_genero==true}"> 
+                        <span class="badge bg-success active">Activo</span> 
+                    </td>
+                    <td th:if="${g.estado_genero==false}"> 
+                        <span class="badge bg-danger active">Inactivo</span> 
+                    </td> 
+                    <td th:if="${g.estado_genero==true}"> 
+                        <a rol="button" class="btn btn-danger btn-sm"> Inactivar </a> 
+                    </td> 
+                    <td th:if="${g.estado_genero==false}"> 
+                        <a role="button" class="btn btn-success btn-sm"> Activar </a> 
+                    </td>
+                    <td> 
+                        <a role="button"  class="btn btn-warning btn-sm" th:href="@{/genero/ver/}+${g.id}"> 
+                            <i class="material-icons">editar</i>
+
+                        </a> 
+                        <a role="button" class="btn btn-warning btn-sm" th:href="@{/genero/delete/} + ${g.id}" onclick="return confirm('Estás seguro que quieres eliminar este genero?');"> 
+                            <i class="material-icons">cancelar</i>
+                        </a> 
+
+                </tbody>
+
+            </table>
+
+    </div>
+    
+</body>
+</html>

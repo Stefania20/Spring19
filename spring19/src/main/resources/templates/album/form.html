@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.css">
+    <title>Disquera</title>
+</head>
+<body>
+    <div class="signupFrm">
+        
+        <form th:action="@{/album/add}" th:object="${album}" method="post" style="width: 35rem;" class="form"> 
+            <h1 th:text="${accion}"></h1>
+            
+            <div class="inputContainer">
+                <label for="nombre_album" class="label" >Nombre Album</label>
+                <input type="text" class="input" id="nombre_album" th:field="*{nombre_album}">
+                        <div class="form-text text-danger" th:if="${#fields.hasErrors('nombre_album')}" th:errors="*{nombre_album}"></div>
+            </div>
+
+            <div class="inputContainer">
+                <label for="anio_publicacion" class="label">Año Publicacion</label>
+                <input type="text" class="input" id="anio_publicacion" th:field="*{anio_publicacion}">
+                        <div class="form-text text-danger" th:if="${#fields.hasErrors('anio_publicacion')}" th:errors="*{anio_publicacion}"></div>
+            </div>
+           
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="estado_album" th:field="*{estado_album}">
+                <label class="form-check-label" for="estado_album">Activo</label>
+            </div>
+            <div>
+                <button type="submit" class="submitBtn">Guardar</button>
+            </div>
+        </form>        
+    </div>
+
+   
+
+    
+</body>
+</html>

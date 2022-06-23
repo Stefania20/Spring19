@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="https://wwww.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.js"></script>
+   
+    <title>Disquera</title>
+</head>
+<body>
+    <div class="signupFrm">
+        
+        <form th:action="@{/genero/add}" th:object="${genero}" method="post" style="width: 35rem;" class="form"> 
+            <h1 th:text="${accion}"></h1>
+            
+            <div class="inputContainer">
+                <label for="nombre_genero" class="label" >Nombre Genero</label>
+                <input type="text" class="input" placeholder="a" id="nombre_genero" th:field="*{nombre_genero}">
+                        <div class="form-text text-danger" th:if="${#fields.hasErrors('nombre_genero')}" th:errors="*{nombre_genero}"></div>
+            </div>
+           
+            <div class="inputContainer">
+                <input class="form-check-input" type="checkbox" id="estado_genero"  th:field="*{estado_genero}">
+                <label class="form-check-label" for="estado_genero">Activo</label>
+            </div>
+            <div>
+                <button type="submit" class="submitBtn">Guardar</button>
+            </div>
+        </form>        
+    </div>
+    
+</body>
+</html>

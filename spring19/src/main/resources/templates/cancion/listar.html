@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="https://wwww.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <title>Listar</title>
+</head>
+<body>
+
+    <div class="container-fluid">
+            <center><h1>Listado de Canciones</h1></center>
+            <table class="centered" >
+                <thead>
+                    <th>Id</th>
+                    <th>Nombre Cancion</th>
+                    <th>Fecha de grabacion</th>
+                    <th>Duracion Cancion</th>
+                    <th>Estado</th>
+                    <th colspan="2">Acciones</th>
+                </thead>
+                <tbody th:if="${canciones.size()>0}" th:each="c:${canciones}">
+                    <td th:text="${c.id}"></td>
+                    <td th:text="${c.nombre_cancion}"></td>
+                    <td th:text="${c.fecha_grabacion}"></td>
+                    <td th:text="${c.duracion_cancion}"></td>
+                    <td th:if="${c.estado_cancion==true}"> 
+                        <span class="badge bg-success active">Activo</span> 
+                    </td>
+                    <td th:if="${c.estado_cancion==false}"> 
+                        <span class="badge bg-danger active">Inactivo</span> 
+                    </td> 
+                    <td th:if="${c.estado_cancion==true}"> 
+                        <a rol="button" class="btn btn-danger btn-sm"> Inactivar </a> 
+                    </td> 
+                    <td th:if="${c.estado_cancion==false}"> 
+                        <a role="button" class="btn btn-success btn-sm"> Activar </a> 
+                    </td>
+                    <td> 
+                        <a role="button" class="btn btn-warning btn-sm" th:href="@{/cancion/ver/}+${c.id}"> 
+                            <i class="material-icons">editar</i>
+
+                        </a> 
+                        <a role="button" class="btn btn-danger btn-sm" th:href="@{/cancion/delete/} + ${c.id}" onclick="return confirm('Estás seguro que quieres eliminar este cancion?');"> 
+                            <i class="material-icons">cancelar</i>
+                        </a> 
+
+                </tbody>
+
+            </table>
+
+    </div>
+    
+</body>
+</html>
